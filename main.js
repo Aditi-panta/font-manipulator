@@ -22,12 +22,22 @@ function modelLoaded(){
 }
 
 function gotPoses(results){
-if (results.length>0){
-    console.log(results);
-}
-}
-
-function draw(){
-    background("#969a97");
+    if (results.length>0){
+        console.log(results);
+        noseX=results[0].pose.nose.x;
+        noseY=results[0].pose.nose.y;
+        console.log("noseX="+noseX+"noseY="+noseY);
+        leftWristX=results[0].pose.leftWrist.x;
+        rightWristX=results[0].pose.rightWrist.x;
+        difference=floor(leftWristX-rightWristX);
+        console.log("leftWristX="+leftWristX+"rightWristX="+rightWristX+"difference="+difference);
+    }
+    }
     
-}
+    function draw(){
+        background("#969a97");
+       document.getElementById("square_side").innerHTML="the font size of the font will be="+difference+"px";
+       fill("#f90093");
+       textSize(difference);
+       text("Aditi",noseX,noseY);
+    }
